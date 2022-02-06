@@ -30,6 +30,7 @@ jobs:
           override: true
 
       - name: Run cargo check
+        if: hashFiles('Cargo.toml') != ''
         uses: actions-rs/cargo@v1
         with:
           command: check
@@ -50,6 +51,7 @@ jobs:
           override: true
 
       - name: Run cargo test
+        if: hashFiles('Cargo.toml') != ''
         uses: actions-rs/cargo@v1
         with:
           command: test
@@ -71,12 +73,14 @@ jobs:
           components: rustfmt, clippy
 
       - name: Run cargo fmt
+        if: hashFiles('Cargo.toml') != ''
         uses: actions-rs/cargo@v1
         with:
           command: fmt
           args: --all -- --check
 
       - name: Run cargo clippy
+        if: hashFiles('Cargo.toml') != ''
         uses: actions-rs/cargo@v1
         with:
           command: clippy
